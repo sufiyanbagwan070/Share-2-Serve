@@ -1,0 +1,123 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #daa1e4;
+}
+
+.header {
+  background: #ff7043;
+  color: white;
+  text-align: center;
+  font-size: 24px;
+  padding: 1rem;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.space-x-6 {
+  width: 100%;
+  display: box;
+  background-color: aliceblue;
+  justify-content: center;
+  text-align: center;
+}
+
+.container {
+  width: 90%;
+  max-width: 900px;
+  margin: 2rem auto;
+}
+
+.food-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0px 3px 6px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+}
+
+.food-form input {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.food-form button {
+  background: #ff7043;
+  color: white;
+  border: none;
+  padding: 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.food-form button:hover {
+  background: #e65c2e;
+}
+
+.food-list table {
+  width: 250%;
+  border-collapse: collapse;
+  background: #363131;
+  box-shadow: 0px 3px 6px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.food-list th, .food-list td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.food-list th {
+  background: #ff7043;
+  color: white;
+}
+.food-list h1 {
+  color: #b62222;
+}
+.status.available {
+  color: green;
+  font-weight: bold;
+}
+.status.booked {
+  color: red;
+  font-weight: bold;
+}
+
+.food-list button {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.food-list button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.navbar {
+  background-color: #ddd;
+  display: flex;
+  justify-content: flex-start; /* or space-between if you want them spread out */
+  gap: 20px; /* adds spacing between links */
+  padding: 10px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+} 
+.navbar {
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;    /* make navbar span entire width */
+  padding: 10px;  /* optional */
+}
