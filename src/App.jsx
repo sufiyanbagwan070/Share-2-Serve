@@ -1,16 +1,15 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import FoodForm from "./components/FoodForm";
 import FoodList from "./components/FoodList";
 import AvailableFood from "./components/AvailableFood";
-import "./App.css";
 import Navbar from "./components/Navbar";
+import "./App.css";
 
 function App() {
-  const [foods, setFoods] = useState([
-   ]);
+  const [foods, setFoods] = useState([]);
 
   // Add new food entry
   const addFood = (food) => {
@@ -20,30 +19,22 @@ function App() {
   // Mark food as booked
   const bookFood = (id) => {
     setFoods(
-      foods.map((f) =>
-        f.id === id ? { ...f, status: "Booked" } : f
-      )
+      foods.map((f) => (f.id === id ? { ...f, status: "Booked" } : f))
     );
   };
 
   return (
-    <>
-      <Navbar/>
     <Router>
-      {/* Navbar */}
-      
-    
+      <Navbar />
 
-      {/* Routes */}
       <Routes>
-        {/* Page 1: Upload food */}
+        {/* Page 1: Upload food + list */}
         <Route
           path="/"
           element={
             <div className="p-6">
               <Header />
               <div className="container mt-6">
-                <FoodForm addFood={addFood} />
                 <FoodList foods={foods} bookFood={bookFood} />
               </div>
             </div>
@@ -62,9 +53,41 @@ function App() {
             </div>
           }
         />
+
+        {/* Page 3: About */}
+        <Route
+          path="/about"
+          element={
+            <div className="p-6">
+              <h2 className="text-3xl font-bold">About Us</h2>
+              <p>We connect restaurants and donors with people in need of food.</p>
+            </div>
+          }
+        />
+
+        {/* Page 4: Contact */}
+        <Route
+          path="/contact"
+          element={
+            <div className="p-6">
+              <h2 className="text-3xl font-bold">Contact Us</h2>
+              <p>Email: support@share2serve.com</p>
+            </div>
+          }
+        />
+
+        {/* Page 5: Submit food only */}
+        <Route
+          path="/submit-food"
+          element={
+            <div className="p-6">
+              <h2 className="text-3xl font-bold">🍴 Submit Food</h2>
+              <FoodForm addFood={addFood} />
+            </div>
+          }
+        />
       </Routes>
     </Router>
-    </>
   );
 }
 
