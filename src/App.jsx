@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Header from "./components/Header";
+import Header from "./components/header";
 import FoodForm from "./components/FoodForm";
 import FoodList from "./components/foodlist";
 import AvailableFood from "./components/AvailableFood";
