@@ -1,11 +1,13 @@
 const FoodList = ({ foods, bookFood }) => {
+  console.log("Rendering FoodList with foods:", foods);
+  
   return (
     <div className="food-list">
       <h2>Available Food</h2>
       {foods.length === 0 ? (
         <p>No food available yet.</p>
-      ) : (
-        <table>
+      ) : ( 
+           <table>
           <thead>
             <tr>
               <th>Food</th>
@@ -38,10 +40,11 @@ const FoodList = ({ foods, bookFood }) => {
               </tr>
             ))}
           </tbody>
-        </table>
-      )}
+        </table>)}
+   
     </div>
   );
 };
+
 
 export default FoodList;

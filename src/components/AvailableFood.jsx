@@ -8,7 +8,7 @@ function AvailableFood({ foods, bookFood }) {
           🍛 Available Food Nearby
         </h2>
         {foods.length === 0 ? (
-          <p className="text-center text-gray-500">No food available right now ❌</p>
+          <p className="text-center text-gray-500">No food available right now  ❌</p>
         ) : (
           <table className="w-full border-collapse border border-gray-300">
             <thead>

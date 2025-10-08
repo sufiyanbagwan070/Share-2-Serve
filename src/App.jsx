@@ -1,19 +1,61 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import FoodForm from "./components/FoodForm";
-import FoodList from "./components/FoodList";
+import FoodList from "./components/foodlist";
 import AvailableFood from "./components/AvailableFood";
 import Navbar from "./components/Navbar";
 import "./App.css";
+ 
+// Cookie helpers
+function setCookie(name, value, days = 365) {
+  const expires = new Date(Date.now() + days * 864e5).toUTCString();
+  document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
+}
+
+function getCookie(name) {
+  return document.cookie.split('; ').reduce((r, v) => {
+    const parts = v.split('=');
+    return parts[0] === name ? decodeURIComponent(parts[1]) : r;
+  }, '');
+}
+
+function deleteCookie(name) {
+  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+}
+
+
 
 function App() {
   const [foods, setFoods] = useState([]);
 
+  // Load foods from cookie on mount
+  useEffect(() => {
+    const cookieData = getCookie('foods');
+    if (cookieData) {
+      try {
+        setFoods(JSON.parse(cookieData));
+      } catch {
+        // Ignore JSON parse errors
+      }
+    }
+  }, []);
+
+  // Save foods to cookie whenever foods changes
+  useEffect(() => {
+    setCookie('foods', JSON.stringify(foods));
+  }, [foods]);
+
   // Add new food entry
   const addFood = (food) => {
     setFoods([...foods, { ...food, id: Date.now(), status: "Available" }]);
+  };
+
+  // Delete all food data (clear cookie and state)
+  const deleteAllFood = () => {
+    setFoods([]);
+    deleteCookie('foods');
   };
 
   // Mark food as booked
@@ -28,7 +70,7 @@ function App() {
       <Navbar />
 
       <Routes>
-        {/* Page 1: Upload food + list */}
+        {/* Home page: Upload food + list */}
         <Route
           path="/"
           element={
@@ -41,7 +83,23 @@ function App() {
           }
         />
 
-        {/* Page 2: Available food for users */}
+        {/* Order page: Food list */}
+        <Route
+          path="/order"
+          element={
+            <div className="p-6">
+              <h2 className="text-3xl font-bold text-center text-orange-600 mb-6">
+                🍽️ Order Food
+              </h2>
+              <div className="container mt-6">
+                <button onClick={deleteAllFood} style={{marginBottom: '1rem', background: '#b62222', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer'}}>Delete All Food Data</button>
+                <FoodList foods={foods} bookFood={bookFood} />
+              </div>
+            </div>
+          }
+        />
+
+        {/* Available food for users */}
         <Route
           path="/request"
           element={
@@ -54,7 +112,7 @@ function App() {
           }
         />
 
-        {/* Page 3: About */}
+        {/* About */}
         <Route
           path="/about"
           element={
@@ -65,7 +123,7 @@ function App() {
           }
         />
 
-        {/* Page 4: Contact */}
+        {/* Contact */}
         <Route
           path="/contact"
           element={
@@ -76,7 +134,7 @@ function App() {
           }
         />
 
-        {/* Page 5: Submit food only */}
+        {/* Submit food only */}
         <Route
           path="/submit-food"
           element={

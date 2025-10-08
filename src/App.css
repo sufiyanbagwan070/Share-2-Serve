@@ -1,7 +1,7 @@
 body {
-  margin: 0;
+  margin: 10;
   font-family: Arial, sans-serif;
-  background: #daa1e4;
+  background: #D7D7D7;
 }
 
 .header {
@@ -22,17 +22,21 @@ body {
 }
 
 .container {
-  width: 90%;
+  width: 100%;
   max-width: 900px;
-  margin: 2rem auto;
+  margin: rem auto;
+  background: #273F4F;
+  min-height: 77vh;
+  border-radius: 10px;
 }
 
 .food-form {
-  display: flex;
+  width: 30%;
+  display: -webkit-flex;
   flex-direction: column;
-  gap: 10px;
-  background: #fff;
-  padding: 1rem;
+  gap: 30px;
+  background: #f5f3f3;
+  padding: 2rem;
   border-radius: 10px;
   box-shadow: 0px 3px 6px rgba(0,0,0,0.1);
   margin-bottom: 2rem;
@@ -41,15 +45,16 @@ body {
 .food-form input {
   padding: 0.5rem;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid #463939;
 }
 
 .food-form button {
   background: #ff7043;
-  color: white;
+  color: ddd;
   border: none;
   padding: 0.6rem;
   border-radius: 6px;
+  font-weight: bold;
   cursor: pointer;
 }
 .food-form button:hover {
@@ -57,9 +62,9 @@ body {
 }
 
 .food-list table {
-  width: 250%;
+  width: 167%;
   border-collapse: collapse;
-  background: #363131;
+  background: #f4f1f1;
   box-shadow: 0px 3px 6px rgba(0,0,0,0.1);
   border-radius: 10px;
   overflow: hidden;
@@ -116,8 +121,7 @@ body {
 .navbar {
   background-color: #ddd;
   display: flex;
-  align-items: center;
-  justify-content: center;
+
   width: 100%;    /* make navbar span entire width */
   padding: 10px;  /* optional */
 }
