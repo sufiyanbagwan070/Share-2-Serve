@@ -1,5 +1,5 @@
 body {
-  margin: 10;
+  margin: 0;
   font-family: Arial, sans-serif;
   background: #D7D7D7;
 }
@@ -24,10 +24,10 @@ body {
 .container {
   width: 100%;
   max-width: 900px;
-  margin: rem auto;
-  background: #273F4F;
+  margin: 1rem auto;
   min-height: 77vh;
   border-radius: 10px;
+  padding: 1rem;
 }
 
 .food-form {
@@ -50,7 +50,7 @@ body {
 
 .food-form button {
   background: #ff7043;
-  color: ddd;
+  color: #fff;
   border: none;
   padding: 0.6rem;
   border-radius: 6px;
@@ -62,7 +62,7 @@ body {
 }
 
 .food-list table {
-  width: 167%;
+  width: 100%;
   border-collapse: collapse;
   background: #f4f1f1;
   box-shadow: 0px 3px 6px rgba(0,0,0,0.1);
@@ -105,6 +105,8 @@ body {
   cursor: not-allowed;
 }
 
+/* removed empty-state dark background per request */
+
 .navbar {
   background-color: #ddd;
   display: flex;
@@ -121,7 +123,6 @@ body {
 .navbar {
   background-color: #ddd;
   display: flex;
-
-  width: 100%;    /* make navbar span entire width */
-  padding: 10px;  /* optional */
+  width: 100%;
+  padding: 10px;
 }
