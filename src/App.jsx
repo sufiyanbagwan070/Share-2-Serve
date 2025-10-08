@@ -7,44 +7,24 @@ import FoodList from "./components/foodlist";
 import AvailableFood from "./components/AvailableFood";
 import Navbar from "./components/Navbar";
 import "./App.css";
- 
-// Cookie helpers
-function setCookie(name, value, days = 365) {
-  const expires = new Date(Date.now() + days * 864e5).toUTCString();
-  document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
-}
-
-function getCookie(name) {
-  return document.cookie.split('; ').reduce((r, v) => {
-    const parts = v.split('=');
-    return parts[0] === name ? decodeURIComponent(parts[1]) : r;
-  }, '');
-}
-
-function deleteCookie(name) {
-  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
-}
 
 
 
 function App() {
-  const [foods, setFoods] = useState([]);
-
-  // Load foods from cookie on mount
-  useEffect(() => {
-    const cookieData = getCookie('foods');
-    if (cookieData) {
-      try {
-        setFoods(JSON.parse(cookieData));
-      } catch {
-        // Ignore JSON parse errors
-      }
+  const [foods, setFoods] = useState(() => {
+    try {
+      const stored = localStorage.getItem('foods');
+      return stored ? JSON.parse(stored) : [];
+    } catch {
+      return [];
     }
-  }, []);
+  });
 
-  // Save foods to cookie whenever foods changes
+  // Save foods to localStorage whenever foods changes
   useEffect(() => {
-    setCookie('foods', JSON.stringify(foods));
+    try {
+      localStorage.setItem('foods', JSON.stringify(foods));
+    } catch {}
   }, [foods]);
 
   // Add new food entry
@@ -52,10 +32,12 @@ function App() {
     setFoods([...foods, { ...food, id: Date.now(), status: "Available" }]);
   };
 
-  // Delete all food data (clear cookie and state)
+  // Delete all food data (clear storage and state)
   const deleteAllFood = () => {
     setFoods([]);
-    deleteCookie('foods');
+    try {
+      localStorage.removeItem('foods');
+    } catch {}
   };
 
   // Mark food as booked
