@@ -15,27 +15,37 @@ const FoodList = ({ foods, bookFood }) => {
           </tr>
         </thead>
         <tbody>
-          {foods.map((food) => (
-            <tr key={food.id}>
-              <td>{food.foodName}</td>
-              <td>{food.quantity}</td>
-              <td>{food.location}</td>
-              <td
-                className={
-                  food.status === "Booked" ? "status booked" : "status available"
-                }
-              >
-                {food.status}
-              </td>
-              <td>
-                {food.status === "Available" ? (
-                  <button onClick={() => bookFood(food.id)}>Accept</button>
-                ) : (
-                  <button disabled>Booked</button>
-                )}
-              </td>
+          {Array.isArray(foods) && foods.length > 0 ? (
+            foods.map((food) => (
+              <tr key={food.id}>
+                <td>{food.foodName}</td>
+                <td>{food.quantity}</td>
+                <td>{food.location}</td>
+                <td
+                  className={
+                    food.status === "Booked" ? "status booked" : "status available"
+                  }
+                >
+                  {food.status}
+                </td>
+                <td>
+                  {food.status === "Available" ? (
+                    <button onClick={() => bookFood(food.id)}>Accept</button>
+                  ) : (
+                    <button disabled>Booked</button>
+                  )}
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>

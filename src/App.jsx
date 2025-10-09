@@ -6,6 +6,7 @@ import FoodForm from "./components/FoodForm";
 import FoodList from "./components/foodlist";
 import AvailableFood from "./components/AvailableFood";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import "./App.css";
 
 
@@ -99,8 +100,41 @@ function App() {
           path="/about"
           element={
             <div className="p-6">
-              <h2 className="text-3xl font-bold">About Us</h2>
-              <p>We connect restaurants and donors with people in need of food.</p>
+              <section className="about">
+                <h2>About Share2Serve</h2>
+                <p>
+                  Share2Serve is a community-driven platform that connects restaurants,
+                  events, offices, and households with nearby people and organizations
+                  who can make immediate use of surplus food. Our mission is simple:
+                  reduce food waste and ensure more people get a nutritious meal.
+                </p>
+                <div className="about-grid">
+                  <div className="about-card">
+                    <h3>Reduce Waste</h3>
+                    <p>Every year tons of edible food is discarded. We aim to turn
+                    leftovers into opportunities to feed people in need.</p>
+                  </div>
+                  <div className="about-card">
+                    <h3>Serve Nearby</h3>
+                    <p>We surface meals available nearby in real-time so helpers can
+                    quickly pick up and serve their community.</p>
+                  </div>
+                  <div className="about-card">
+                    <h3>Safe & Simple</h3>
+                    <p>Clear info about dish, quantity, and location makes coordination
+                    easy. Food status helps avoid double-booking.</p>
+                  </div>
+                </div>
+
+                <div className="about-cta">
+                  <h3>How you can help</h3>
+                  <ul>
+                    <li>List surplus meals after events or daily prep.</li>
+                    <li>Pick up available meals and deliver to people nearby.</li>
+                    <li>Share the app and grow the local network.</li>
+                  </ul>
+                </div>
+              </section>
             </div>
           }
         />
@@ -121,12 +155,13 @@ function App() {
           path="/submit-food"
           element={
             <div className="p-6">
-              <h2 className="text-3xl font-bold">🍴 Submit Food</h2>
+              <h2 className="text-3xl font-bold page-title">🍴 Submit Food</h2>
               <FoodForm addFood={addFood} />
             </div>
           }
         />
       </Routes>
+      <Footer />
     </Router>
   );
 }
